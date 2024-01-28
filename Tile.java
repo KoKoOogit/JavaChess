@@ -8,6 +8,7 @@ public class Tile {
 
     protected int rank;
     protected int file;
+    protected Piece p;
 
     public Tile(int x, int y, int rank, int file) {
         this.startX = x;
@@ -27,7 +28,7 @@ public class Tile {
         return center;
     }
     
-    public void setrank(int rank) {
+    public void setRank(int rank) {
         this.rank = rank;
     }
     
@@ -49,5 +50,17 @@ public class Tile {
     
     public int getStartY() {
         return this.startY;
+    }
+
+    public void setPiece(Piece p){
+        this.p = p;
+    }
+
+    public Piece getPiece() {
+        return this.p;
+    }
+
+    public void removePiece() {
+        this.p = null;
     }
 }

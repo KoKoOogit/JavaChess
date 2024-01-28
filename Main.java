@@ -5,8 +5,9 @@ public class Main {
        
         ChessPanel cp = new ChessPanel();
         ChessFrame cf = new ChessFrame(800);
-        System.out.println(cp.getBoard().getTiles()[7][6].file);
-      
+        Player one = new Player();
+        Piece p = new Pawn(0, 0, one, "./icons/w-pawn.png", cp.getBoard());
+        cp.getBoard().getTile(0, 0).setPiece(p);
         //this code should be at the end
 
         cf.setVisible(true);
