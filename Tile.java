@@ -6,13 +6,13 @@ public class Tile {
     protected int startX;
     protected int startY;
 
-    protected int row;
+    protected int rank;
     protected int file;
 
-    public Tile(int x, int y, int row, int file) {
+    public Tile(int x, int y, int rank, int file) {
         this.startX = x;
         this.startY = y;
-        this.row = row;
+        this.rank = rank;
         this.file = file;
        
     }
@@ -27,16 +27,16 @@ public class Tile {
         return center;
     }
     
-    public void setRow(int row) {
-        this.row = row;
+    public void setrank(int rank) {
+        this.rank = rank;
     }
     
-    public void setFile(int row) {
-        this.row = row;
+    public void setFile(int rank) {
+        this.rank = rank;
     }
 
-    public int getRow() {
-        return this.row;
+    public int getrank() {
+        return this.rank;
     }
 
     public int getFile() {

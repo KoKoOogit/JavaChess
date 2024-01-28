@@ -11,15 +11,14 @@ public class ChessPanel extends JPanel {
     // ChessPanel cp = new ChessPanel();
     public ChessPanel() {
         super.setBounds(0, 0, 400, 400);
-        super.setBackground(Color.WHITE);
+        super.setBackground(Color.GRAY);
         this.b = new Board();
     }
     
     //ChessPanel cp= new ChessPanel(Board);
     public ChessPanel(Board b) {
         super.setBounds(0, 0, 400, 400);
-        super.setBackground(Color.WHITE);
-        System.out.println("Runs with an exisiting board");
+        super.setBackground(Color.GRAY);
         this.b = b;
     }
 
@@ -27,7 +26,7 @@ public class ChessPanel extends JPanel {
     public ChessPanel(BorderLayout borderLayout) {
         super(borderLayout);
         super.setBounds(0, 0, 400, 400);
-        super.setBackground(Color.WHITE);
+        super.setBackground(Color.GRAY);
         this.b = new Board();
     }
     

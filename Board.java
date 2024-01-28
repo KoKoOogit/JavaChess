@@ -1,13 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Board {
     private Color c1 = new Color(210, 165, 125);
     private Color c2 = new Color(175, 115, 70);
 
     private int tileDimension = 50;
-    private ArrayList<Tile> tiles = new ArrayList<Tile>();
+    private Tile[][] tiles = new Tile[8][8];
 
     public Board() {
         addTiles();
@@ -21,27 +21,26 @@ public class Board {
     }
 
     public void draw(Graphics g) {
-        for (Tile t : tiles) {
-            Color c = (t.row + t.file) % 2 == 0 ? c1 : c2;
+      for(Tile[] s : tiles){
+        for (Tile t : s) {
+            Color c = (t.rank + t.file) % 2 == 0 ? c1 : c2;
             g.setColor(c);
             g.fillRect(t.startX, t.startY, tileDimension, tileDimension);
 
         }
+      }
     }
 
     //add tiles to Tiles
     private void addTiles() {
         for (int file = 0; file < 8; file += 1) {
-            for (int row = 0; row < 8; row += 1) {
-                this.tiles.add(new Tile(row * tileDimension, file * tileDimension, row, file));
+            for (int rank = 0; rank < 8; rank += 1) {
+                this.tiles[rank][file] = new Tile(rank * tileDimension, file * tileDimension, rank, file);
             }
         }
     }
     //return the tiles
-    public ArrayList<Tile> getTiles() {
+    public Tile[][] getTiles() {
         return this.tiles;
     }
-
-   
-
 }
