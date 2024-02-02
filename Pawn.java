@@ -17,7 +17,6 @@ public class Pawn extends Piece {
             }
         }
         if (b.getTile(r, f).file == this.tile.file + 1) {
-            System.out.println("My file: " + this.file +  " Tile File" + tile.file);
             return true;
         }
 

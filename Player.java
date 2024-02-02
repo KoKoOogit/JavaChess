@@ -2,15 +2,15 @@ import java.util.ArrayList;
 
 public class Player {
     private String name;
-    private ArrayList<Piece> capPieces = new ArrayList<Piece>();
-    private ArrayList<Piece> lossPieces = new ArrayList<Piece>();
+    private ArrayList<Piece> capturedPieces = new ArrayList<Piece>();
+    private ArrayList<Piece> lostPieces = new ArrayList<Piece>();
     
-    public void addCapPiece(Piece p) {
-        this.capPieces.add(p);
+    public void addCapturedPiece(Piece p) {
+        this.capturedPieces.add(p);
     }
 
-    public ArrayList<Piece> getCapPieces() {
-        return this.capPieces;
+    public ArrayList<Piece> getCapturedPieces() {
+        return this.capturedPieces;
     }
 
 

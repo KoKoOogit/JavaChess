@@ -44,12 +44,41 @@ public class ChessPanel extends JPanel implements MouseListener {
     public void updateGraphics() {
         this.repaint();
     }
-    
+
+    // private String convertRank(int rank){
+    //   String rankLetter = "";
+    //   if(rank == 0){
+    //     rankLetter = "a";
+    //   }
+    //   else if(rank == 1){
+    //     rankLetter = "b";
+    //   }
+    //   else if(rank == 2){
+    //     rankLetter = "c";
+    //   }
+    //   else if(rank == 3){
+    //     rankLetter = "d";
+    //   }
+    //   else if(rank == 4){
+    //     rankLetter = "e";
+    //   }
+    //   else if(rank == 5){
+    //     rankLetter = "f";
+    //   }
+    //   else if(rank == 6){
+    //     rankLetter = "g";
+    //   }
+    //   else if(rank == 7){
+    //     rankLetter = "h";
+    //   }
+    //   return rankLetter;
+    // }
+  
     private Tile getPressedTile(int mouseX, int mouseY) {
-        int rank = mouseX / b.tileDimension;
-        int file = mouseY / b.tileDimension;
-        System.out.println("X: " + rank + "Y: " +  file);
-        return b.getTile(rank, file);
+      int rank = mouseX / b.tileDimension;
+      int file = mouseY / b.tileDimension;
+      // System.out.println(rank + (file + 1));
+      return b.getTile(rank, file);
     }
 
     //called when Jpanel initiated or updateGrahics
