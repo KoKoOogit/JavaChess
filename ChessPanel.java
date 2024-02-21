@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class ChessPanel extends JPanel implements MouseListener {
 
-    Tile inSelectionTile;
+    Tile fromTile;
     
     Board b;
 
@@ -45,34 +45,34 @@ public class ChessPanel extends JPanel implements MouseListener {
         this.repaint();
     }
 
-    // private String convertRank(int rank){
-    //   String rankLetter = "";
-    //   if(rank == 0){
-    //     rankLetter = "a";
-    //   }
-    //   else if(rank == 1){
-    //     rankLetter = "b";
-    //   }
-    //   else if(rank == 2){
-    //     rankLetter = "c";
-    //   }
-    //   else if(rank == 3){
-    //     rankLetter = "d";
-    //   }
-    //   else if(rank == 4){
-    //     rankLetter = "e";
-    //   }
-    //   else if(rank == 5){
-    //     rankLetter = "f";
-    //   }
-    //   else if(rank == 6){
-    //     rankLetter = "g";
-    //   }
-    //   else if(rank == 7){
-    //     rankLetter = "h";
-    //   }
-    //   return rankLetter;
-    // }
+    private String convertRank(int rank){
+      String rankLetter = "";
+      if(rank == 0){
+        rankLetter = "h";
+      }
+      else if(rank == 1){
+        rankLetter = "g";
+      }
+      else if(rank == 2){
+        rankLetter = "f";
+      }
+      else if(rank == 3){
+        rankLetter = "e";
+      }
+      else if(rank == 4){
+        rankLetter = "d";
+      }
+      else if(rank == 5){
+        rankLetter = "c";
+      }
+      else if(rank == 6){
+        rankLetter = "b";
+      }
+      else if(rank == 7){
+        rankLetter = "a";
+      }
+      return rankLetter;
+    }
   
     private Tile getPressedTile(int mouseX, int mouseY) {
       int rank = mouseX / b.tileDimension;
@@ -81,6 +81,31 @@ public class ChessPanel extends JPanel implements MouseListener {
       return b.getTile(rank, file);
     }
 
+  private void makeUpdate(Tile pressedTile){
+    if (fromTile != null) {
+        if (fromTile.getPiece().isValidMove(pressedTile.rank, pressedTile.file)) {
+          System.out.println("Is valid move");
+          if (pressedTile.p != null){
+            System.out.println("The piece not null");
+            if (pressedTile.p.player != fromTile.p.player){
+              System.out.println("Hey There is a piece you are capturing!");
+            }
+          }
+
+          pressedTile.setPiece(fromTile.getPiece());
+          pressedTile.p.updateTile(pressedTile);
+          pressedTile.p.rank = pressedTile.rank;
+          pressedTile.p.file = pressedTile.file;
+
+
+          updateGraphics();
+
+          fromTile.removePiece();
+          fromTile = null;
+        }
+      }   
+    }
+  
     //called when Jpanel initiated or updateGrahics
     @Override
     public void paintComponent(Graphics g) {
@@ -89,36 +114,30 @@ public class ChessPanel extends JPanel implements MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        // Called when a mouse button is pressed
-        Tile pressedTile = getPressedTile(e.getX(), e.getY());
+  public void mousePressed(MouseEvent e) {
+    // Called when a mouse button is pressed
+    Tile pressedTile = getPressedTile(e.getX(), e.getY());
 
-        //set the variable to pressTile if a user press on his pieces'
-        if (pressedTile.getPiece() != null) {
-          
-            inSelectionTile = pressedTile;
-
+    //if a userpressedTile has a piece, fromTile will set to that piece unless pressedTile's piece is not player's
+    if (pressedTile.getPiece() != null ) {
+      if (fromTile == null ){
+        fromTile = pressedTile;
         }
-        //if a user press on a unoccupied tile, it will check if the moved is valid and if so it will move there
-        else {
-            
-            if (inSelectionTile != null) {
-                if (inSelectionTile.getPiece().isValidMove(pressedTile.rank, pressedTile.file)) {
-
-                    pressedTile.setPiece(inSelectionTile.getPiece());
-                    pressedTile.p.updateTile(pressedTile);
-                    pressedTile.p.rank = pressedTile.rank;
-                    pressedTile.p.file = pressedTile.file;
-
-                    updateGraphics();
-                    
-                    inSelectionTile.removePiece();
-                    inSelectionTile = null;
-                }
+      else{
+        if (fromTile.p.player != pressedTile.p.player)
+        {    
+        makeUpdate(pressedTile);
+      }
+        else{
+          fromTile = pressedTile;
         }
-            
-        }
+      }
     }
+    //if a user press on a unoccupied tile, it will check if the move is valid and if so it will move there
+    else {
+      makeUpdate(pressedTile);
+    }
+  }
 
     @Override
     public void mouseReleased(MouseEvent e) {

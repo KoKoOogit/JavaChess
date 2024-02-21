@@ -11,7 +11,7 @@ public class Knight extends Piece {
         int diffRank = Math.abs(pRank - rank);
 
         if (diffFile == 2 && diffRank == 1 || diffFile == 1 && diffRank == 2){
-            return true;
+          return true;
         }
         return false; 
     }

@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Piece{
-  protected boolean isWhite;
+public class Piece {
   protected boolean isKilled;
   protected Player player;
   protected String icon_path;
@@ -14,8 +13,7 @@ public class Piece{
   protected int rank;
   protected int file;
 
-
-  public Piece(int rank, int file, Player p, String icon, Board b){
+  public Piece(int rank, int file, Player p, String icon, Board b) {
     this.rank = rank;
     this.file = file;
     this.icon_path = icon;
@@ -23,9 +21,13 @@ public class Piece{
     this.b = b;
 
   }
-  
+
   public void setPlayer(Player p) {
     this.player = p;
+  }
+
+  public Player getPlayer(){
+    return player;
   }
 
   public BufferedImage getImage() {
@@ -38,13 +40,20 @@ public class Piece{
     }
     return image;
   }
-   
+
   public boolean isValidMove(int rank, int file) {
     return false;
   }
-   
+
   public void updateTile(Tile tile) {
     this.tile = tile;
   }
 
+  public int getRank(){
+    return rank;
+  }
+
+  public int getFile(){
+    return file;
+  }
 }

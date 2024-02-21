@@ -18,8 +18,7 @@ public class Rook extends Piece {
 
         // if pressTile is above piece
         if (pressTile.file < file) {
-          for (int i = pressTile.file + 1; i < file; i++) {
-            System.out.println(i);
+          for (int i = pressTile.file + 2; i < file; i++) {
             if (b.getTile(rank, i).p != null) {
               return false;
             }
