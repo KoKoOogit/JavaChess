@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Arrays;
 
 public class Board {
     private Color c1 = new Color(210, 165, 125);

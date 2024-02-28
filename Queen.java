@@ -15,50 +15,29 @@ public class Queen extends Piece {
 
       // if in a same file
       if (rank == pressTile.rank) {
-
-        // if pressTile is above piece
-        if (pressTile.file < file) {
-          for (int i = pressTile.file + 1; i < file; i++) {
-            if (b.getTile(rank, i).p != null) {
-              return false;
-            }
+        // vertical movement
+        int dy = (file < pressTile.file) ? 1 : -1;
+        for (int i = file + dy; i != pressTile.file; i += dy) {
+          if (b.getTile(rank, i).p != null) {
+            return false;
           }
         }
-
-        // if pressTile is below piece
-        if (pressTile.file > file) {
-          for (int i = pressTile.file; i > file; i--) {
-            if (b.getTile(rank, i).p != null) {
-              return false;
-            }
-          }
-        }
-        return true;
       }
 
       // if in a same rank
       if (file == pressTile.file) {
-        // if pressTile is at left
-        if (pressTile.rank < rank) {
-          for (int i = pressTile.rank; i < rank; i++) {
-            if (b.getTile(i, file).p != null) {
-              return false;
-            }
-          }
-        }
-        //if pressTile is at right
-        if (pressTile.rank > rank){
-          for(int i= pressTile.rank; i>rank; i--){
-            if(b.getTile(i,file).p != null){
-              return false;
-            }
+        int dx = (rank < pressTile.rank) ? 1 : -1;
+        for (int i = rank + dx; i != pressTile.rank; i += dx) {
+          if (b.getTile(i, file).p != null) {
+            return false;
           }
         }
 
-        return true;
       }
+
+      return true;
     }
-    
+
     if (pressTile.file != this.file && pressTile.rank != this.rank){
       if(Math.abs((pressTile.file-file)/(pressTile.rank-rank)) == 1){
         int m = (pressTile.file-file) / (pressTile.rank - rank);  
@@ -66,7 +45,7 @@ public class Queen extends Piece {
         //if a piece is in left
         if (pressTile.rank < rank ){
 
-          for(int x=pressTile.rank;x < rank; x++){
+          for(int x=pressTile.rank+1;x < rank; x++){
             int y = (m*x) + offSet;
             if (b.getTile(x,y).getPiece() != null){
               return false;
@@ -76,7 +55,7 @@ public class Queen extends Piece {
         }
         //if a piece is in right
         if (pressTile.rank > rank ) {
-          for (int x =pressTile.rank; x > rank; x--){
+          for (int x =pressTile.rank-1; x > rank; x--){
             int y = (m*x) + offSet;
             if (b.getTile(x,y).getPiece() != null){
               return false;

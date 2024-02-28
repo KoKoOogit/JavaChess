@@ -89,6 +89,8 @@ public class ChessPanel extends JPanel implements MouseListener {
             System.out.println("The piece not null");
             if (pressedTile.p.player != fromTile.p.player){
               System.out.println("Hey There is a piece you are capturing!");
+              pressedTile.removePiece();
+             
             }
           }
 

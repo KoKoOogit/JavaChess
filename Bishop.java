@@ -22,7 +22,7 @@ public Bishop(int rank, int file, Player p, String icon, Board b) {
         int offSet = this.file - (m * this.rank);
         //if a piece is in left
         if (pressTile.rank < rank ){
-          for(int x=pressTile.rank;x < rank; x++){
+          for(int x=pressTile.rank+1;x < rank; x++){
             int y = (m*x) + offSet;
             if (b.getTile(x,y).getPiece() != null){
               return false;
@@ -31,9 +31,11 @@ public Bishop(int rank, int file, Player p, String icon, Board b) {
         }
         //if a piece is in right
         if (pressTile.rank > rank ) {
-          for (int x =pressTile.rank; x > rank; x--){
+          for (int x =pressTile.rank-1; x > rank; x--){
             int y = (m*x) + offSet;
-            if (b.getTile(x,y).getPiece() != null){
+            if (b.getTile(x, y).getPiece() != null) {
+              //check if a piece is player's piece
+            
               return false;
             }
           }
