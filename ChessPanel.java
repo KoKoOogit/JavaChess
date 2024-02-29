@@ -13,29 +13,28 @@ public class ChessPanel extends JPanel implements MouseListener {
     Board b;
 
     public ChessPanel() {
-        super.setBounds(0, 0, 400, 400);
-        super.setBackground(Color.GRAY);
-        this.b = new Board();
-        addMouseListener(this);
+      super.setBounds(0, 0, 400, 400);
+      super.setBackground(Color.GRAY);
+      this.b = new Board();
+      addMouseListener(this);
     }
     
     public ChessPanel(Board b) {
-        super.setBounds(0, 0, 400, 400);
-        super.setBackground(Color.GRAY);
-        this.b = b;
-        addMouseListener(this);
+      super.setBounds(0, 0, 400, 400);
+      super.setBackground(Color.GRAY);
+      this.b = b;
+      addMouseListener(this);
     }
 
-    //ChessPanel cp = new ChessPanel(BorderLayout)
     public ChessPanel(BorderLayout borderLayout) {
-        super(borderLayout);
-        super.setBounds(0, 0, 400, 400);
-        super.setBackground(Color.GRAY);
-        this.b = new Board();
-        addMouseListener(this);
+      super(borderLayout);
+      super.setBounds(0, 0, 400, 400);
+      super.setBackground(Color.GRAY);
+      this.b = new Board();
+      addMouseListener(this);
     }
 
-    //returns  board class
+    //returns board class
     public Board getBoard() {
         return this.b;
     }
@@ -92,7 +91,7 @@ public class ChessPanel extends JPanel implements MouseListener {
               } 
             }
           }
-
+          
           pressedTile.setPiece(fromTile.getPiece());
           pressedTile.p.updateTile(pressedTile);
           pressedTile.p.rank = pressedTile.rank;
