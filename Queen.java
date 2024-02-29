@@ -10,8 +10,8 @@ public class Queen extends Piece {
   }
 
   @Override
-  public boolean isValidMove(int r, int f) {
-    Tile pressTile = b.getTile(r, f);
+  public boolean isValidMove(int pressRank, int pressFile) {
+    Tile pressTile = b.getTile(pressRank, pressFile);
     if (rank == pressTile.rank || file == pressTile.file) {
 
       // if in a same rank

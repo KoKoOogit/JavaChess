@@ -4,22 +4,12 @@ import javax.swing.*;
 
 public class ChessFrame extends JFrame {
 
-    //default constructor
-    public ChessFrame() {
-       
+    //Constructor for frame that assigns attributes
+    public ChessFrame(int dimension) {
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        super.setSize(500, 500);
-
-        super.setTitle("Chess Game");
-        super.getContentPane().setBackground(Color.GRAY);
-
-    }
-    //constructor with dimension
-    public ChessFrame(int d) {
-        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        super.setSize(d, d);
+        super.setSize(dimension, dimension);
        
-        super.setTitle("Chess Game");
+        super.setTitle("Chess");
         super.getContentPane().setBackground(Color.GRAY);
 
     }

@@ -98,17 +98,21 @@ public class Main {
     System.out.println("(3) Draw/Forfeit");
     while(true){
       String input = chessConsole.nextLine();
+      //if 1 is entered, the console will offer help on how to play
       if(input.equals("1")){
         System.out.println("To move the pieces first click the piece you want to move, then click the square you want to move it to. If you click a tile where there is already a piece, your own piece will only move if the existing piece on the tile is a different color"); 
       }
+      //if 2 is entered, the console will give the rules
       else if(input.equals("2")){
         System.out.println("For the rules, refer to this article by chess.com"); 
         System.out.println("https://www.chess.com/learn-how-to-play-chess");
       }
+      //if 3 is entered, the console will end the game
       else if(input.equals("3")){
         System.out.println("The game has been manually ended!"); 
         System.exit(0);
       }
+      //else the console will ask for the user to renter their input
       else{
         System.out.println("Please enter a valid input, provided below");
         System.out.println("(1) Help");

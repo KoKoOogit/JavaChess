@@ -14,13 +14,18 @@ public class Pawn extends Piece {
       //intitial move => check if a move in front is null  
       if (file == 6) {
           if (b.getTile(r, f).file == this.tile.file - 2 && b.getTile(r, f).rank == this.tile.rank) {
-            return true;
+            if(b.getTile(r, f).p == null){
+              return true;
+            }
           }
       }
       if (b.getTile(r, f).file == this.tile.file - 1 && b.getTile(r, f).rank == this.tile.rank) {
-        return true;
+        if(b.getTile(r, f).p == null){
+          return true;
+        }
       }
-      else if((b.getTile(r, f).file == this.tile.file - 1 && (b.getTile(r, f).rank == this.tile.rank + 1 || b.getTile(r, f).rank == this.tile.rank - 1))){
+      //checking if a white pawn can capture a piece
+      else if((b.getTile(r, f).file == this.tile.file - 1 && (b.getTile(r, f).rank == this.tile.rank + 1 || b.getTile(r, f).rank == this.tile.rank - 1)) && (b.getTile(r, f).p != null && b.getTile(r, f).p.player.getPlayerColor().toLowerCase().equals("black"))){
         return true;
       }
     }  
@@ -28,13 +33,18 @@ public class Pawn extends Piece {
       //intitial move => check if a move in front is null  
       if (file == 1) {
         if (b.getTile(r, f).file == this.tile.file + 2 && b.getTile(r, f).rank == this.tile.rank) {
-          return true;
+          if(b.getTile(r, f).p == null){
+            return true;
+          }
         }
       }
       if (b.getTile(r, f).file == this.tile.file + 1 && b.getTile(r, f).rank == this.tile.rank) {
-        return true;
+        if(b.getTile(r, f).p == null){
+          return true;
+        }
       }
-      else if((b.getTile(r, f).file == this.tile.file - 1 && (b.getTile(r, f).rank == this.tile.rank + 1 || b.getTile(r, f).rank == this.tile.rank - 1))){
+      //checking if a black pawn can capture a piece
+      else if((b.getTile(r, f).file == this.tile.file - 1 && (b.getTile(r, f).rank == this.tile.rank + 1 || b.getTile(r, f).rank == this.tile.rank - 1)) && (b.getTile(r, f).p != null && b.getTile(r, f).p.player.getPlayerColor().toLowerCase().equals("white"))){
         return true;
       }
     }

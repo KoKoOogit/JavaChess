@@ -48,14 +48,6 @@ public class Piece{
     }
     return image;
   }
-  
-  public Player getPlayer(){
-    return player;
-  }
-  
-  public void setPlayer(Player p){
-    this.player = p;
-  }
 
   public boolean isValidMove(int rank, int file){
     return false;
