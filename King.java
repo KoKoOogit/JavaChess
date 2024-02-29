@@ -17,7 +17,7 @@ private boolean hasMoved = false;
       hasMoved = true;
       return true;
     }
-    if
+
     return false; 
   }
   

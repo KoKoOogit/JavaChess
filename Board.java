@@ -2,6 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Board {
+  protected Player current_player;
+  //white, black
+  protected Player[] players;
   private Color c1 = new Color(210, 165, 125);
   private Color c2 = new Color(175, 115, 70);
 
@@ -10,8 +13,15 @@ public class Board {
 
   public Board() {
     addTiles();
+    this.current_player = players[0];
   }
- 
+  //initiate b by adding players ( white as index 0 )
+  public Board(Player[] players) {
+    this.players = players;
+    this.current_player = players[0];
+    addTiles();
+  }
+
   public Board(Color c1, Color c2, int dimension, int tileDimension) {
     this.tileDimension = dimension;
     this.c1 = c1;
@@ -53,4 +63,22 @@ public class Board {
     }
     return null;
   }
+  //switch turn
+  public void switchPlayer() {
+    if (current_player == players[0]) {
+      current_player = players[1];
+    } else {
+      current_player = players[0];
+    }
+  }
+
+  //returns Player which is not his turn
+  public Player getNotTurnPlayer() {
+    if (current_player == players[0]) {
+      return players[1];
+    } else {
+      return players[0];
+    }
+  }
+
 }
