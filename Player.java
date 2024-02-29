@@ -2,23 +2,24 @@ import java.util.ArrayList;
 
 public class Player {
   private String color;
-  private ArrayList<Piece> capturedPieces = new ArrayList<Piece>();
-  private ArrayList<Piece> lostPieces = new ArrayList<Piece>();
+  private int score;
 
-  public Player(String color){
+  //Constructor for player that assigns attributes
+  public Player(String color, int score){
     this.color = color;
-  }
-  
-  public void addCapturedPiece(Piece p) {
-    this.capturedPieces.add(p);
-  }
-
-  public ArrayList<Piece> getCapturedPieces() {
-    return this.capturedPieces;
+    this.score = score;
   }
 
   public String getPlayerColor(){
     return this.color;
+  }
+
+  public int getScore(){
+    return score;
+  }
+
+  public void setScore(int score){
+    this.score = score;
   }
 }
 

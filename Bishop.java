@@ -2,8 +2,9 @@ import java.lang.Math;
 
 public class Bishop extends Piece {
 
-public Bishop(int rank, int file, Player p, String icon, Board b) {
-  super(rank, file, p, icon, b);
+  //Constructor for bishop that assigns attributes
+  public Bishop(int rank, int file, Player p, String name, String icon, int points, Board b) {
+  super(rank, file, p, name, icon, points, b);
   this.b = b;
   tile = b.getTile(rank, file);
 }
@@ -12,7 +13,6 @@ public Bishop(int rank, int file, Player p, String icon, Board b) {
   public boolean isValidMove(int r,int f) {
    
     Tile pressTile = b.getTile(r,f);
-
 
     //if same slope ==> 1 valid move
     //condition below prevents divisible by zero Error
@@ -35,7 +35,6 @@ public Bishop(int rank, int file, Player p, String icon, Board b) {
             int y = (m*x) + offSet;
             if (b.getTile(x, y).getPiece() != null) {
               //check if a piece is player's piece
-            
               return false;
             }
           }

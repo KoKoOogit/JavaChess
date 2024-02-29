@@ -10,57 +10,57 @@ public class Tile {
     protected int file;
     protected Piece p;
 
+    //constructor for bishop that assigns attributes
     public Tile(int x, int y, int rank, int file) {
-        this.startX = x;
-        this.startY = y;
-        this.rank = rank;
-        this.file = file;
-       
+      this.startX = x;
+      this.startY = y;
+      this.rank = rank;
+      this.file = file;
     }
-    //returns the center point of a tile in arrayList (x,y)
-    public ArrayList<Integer> getCenter(int tileWidth) {
-
-        this.x = (this.startX + tileWidth) / 2;
-        this.y = (this.startX + tileWidth) / 2;
-        ArrayList<Integer> center = new ArrayList<Integer>();
-        center.add(this.x);
-        center.add(this.y);
-        return center;
+  
+    //returns the center point of a tile in an arrayList as a coordinate pair
+    public ArrayList<Integer> getCenter(int tileWidth){
+      this.x = (this.startX + tileWidth) / 2;
+      this.y = (this.startX + tileWidth) / 2;
+      ArrayList<Integer> center = new ArrayList<Integer>();
+      center.add(this.x);
+      center.add(this.y);
+      return center;
     }
     
     public void setRank(int rank) {
-        this.rank = rank;
+      this.rank = rank;
     }
     
-    public void setFile(int rank) {
-        this.rank = rank;
+    public void setFile(int file) {
+      this.file = file;
     }
 
     public int getrank() {
-        return this.rank;
+      return this.rank;
     }
 
     public int getFile() {
-        return this.file;
+      return this.file;
     }
     
     public int getStartX() {
-        return this.startX;
+      return this.startX;
     }
     
     public int getStartY() {
-        return this.startY;
+      return this.startY;
     }
 
     public void setPiece(Piece p){
-        this.p = p;
+      this.p = p;
     }
 
     public Piece getPiece() {
-        return this.p;
+      return this.p;
     }
 
     public void removePiece() {
-        this.p = null;
+      this.p = null;
     }
 }

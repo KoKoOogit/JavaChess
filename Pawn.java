@@ -2,34 +2,40 @@ public class Pawn extends Piece {
 
   Board b;
    
-  public Pawn(int rank, int file, Player p, String icon, Board b) {
-    super(rank, file, p, icon, b);
+  public Pawn(int rank, int file, Player p, String name, String icon, int points, Board b) {
+    super(rank, file, p, name, icon, points, b);
     this.b = b;
     tile =  b.getTile(rank, file);
   }
     
   @Override
   public boolean isValidMove(int r, int f) {
-    if(player.getPlayerColor().equals("white")){
+    if(player.getPlayerColor().toLowerCase().equals("white")){
       //intitial move => check if a move in front is null  
       if (file == 6) {
           if (b.getTile(r, f).file == this.tile.file - 2 && b.getTile(r, f).rank == this.tile.rank) {
-              return true;
+            return true;
           }
       }
       if (b.getTile(r, f).file == this.tile.file - 1 && b.getTile(r, f).rank == this.tile.rank) {
-          return true;
+        return true;
+      }
+      else if((b.getTile(r, f).file == this.tile.file - 1 && (b.getTile(r, f).rank == this.tile.rank + 1 || b.getTile(r, f).rank == this.tile.rank - 1))){
+        return true;
       }
     }  
     else{
       //intitial move => check if a move in front is null  
       if (file == 1) {
-          if (b.getTile(r, f).file == this.tile.file + 2 && b.getTile(r, f).rank == this.tile.rank) {
-              return true;
-          }
+        if (b.getTile(r, f).file == this.tile.file + 2 && b.getTile(r, f).rank == this.tile.rank) {
+          return true;
+        }
       }
       if (b.getTile(r, f).file == this.tile.file + 1 && b.getTile(r, f).rank == this.tile.rank) {
-          return true;
+        return true;
+      }
+      else if((b.getTile(r, f).file == this.tile.file - 1 && (b.getTile(r, f).rank == this.tile.rank + 1 || b.getTile(r, f).rank == this.tile.rank - 1))){
+        return true;
       }
     }
     return false;

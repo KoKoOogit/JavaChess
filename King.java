@@ -2,8 +2,8 @@ import java.lang.Math;
 
 public class King extends Piece {
 
-  public King(int r, int file, Player player, String iconPath, Board board) {
-      super(r, file, player, iconPath, board);
+  public King(int rank, int file, Player player, String name, String iconPath, int points, Board board) {
+      super(rank, file, player, name, iconPath, points, board);
   }
   @Override
   public boolean isValidMove(int pRank, int pFile){

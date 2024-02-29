@@ -2,8 +2,9 @@ public class Rook extends Piece {
 
   Board b;
 
-  public Rook(int rank, int file, Player p, String icon, Board b) {
-    super(rank, file, p, icon, b);
+  //Constructor for rook that assigns attributes
+  public Rook(int rank, int file, Player p, String name, String icon, int points, Board b) {
+    super(rank, file, p, name, icon, points, b);
     this.b = b;
     tile = b.getTile(rank, file);
   }
@@ -11,11 +12,10 @@ public class Rook extends Piece {
   @Override
   public boolean isValidMove(int r, int f) {
     Tile pressTile = b.getTile(r, f);
-    if (rank == pressTile.rank || file == pressTile.file) {
-
-      // if in a same file
+    
+    if (rank == pressTile.rank || file == pressTile.file){
+      //if in a same rank
       if (rank == pressTile.rank) {
-        //vertical movement
         int dy = (file < pressTile.file) ? 1 : -1;
         for (int i = file + dy; i != pressTile.file; i += dy) {
           if (b.getTile(rank, i).p != null) {
@@ -24,7 +24,7 @@ public class Rook extends Piece {
         }
       }
 
-      // if in a same rank
+      // if in a same file
       if (file == pressTile.file) {
         int dx = (rank < pressTile.rank) ? 1 : -1;
         for (int i = rank + dx; i != pressTile.rank; i += dx) {
@@ -32,9 +32,7 @@ public class Rook extends Piece {
             return false;
           }
         }
-
       }
-      
       return true;
     }
     return false;

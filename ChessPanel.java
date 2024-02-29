@@ -48,28 +48,28 @@ public class ChessPanel extends JPanel implements MouseListener {
     private String convertRank(int rank){
       String rankLetter = "";
       if(rank == 0){
-        rankLetter = "h";
+        rankLetter = "a";
       }
       else if(rank == 1){
-        rankLetter = "g";
-      }
-      else if(rank == 2){
-        rankLetter = "f";
-      }
-      else if(rank == 3){
-        rankLetter = "e";
-      }
-      else if(rank == 4){
-        rankLetter = "d";
-      }
-      else if(rank == 5){
-        rankLetter = "c";
-      }
-      else if(rank == 6){
         rankLetter = "b";
       }
+      else if(rank == 2){
+        rankLetter = "c";
+      }
+      else if(rank == 3){
+        rankLetter = "d";
+      }
+      else if(rank == 4){
+        rankLetter = "e";
+      }
+      else if(rank == 5){
+        rankLetter = "f";
+      }
+      else if(rank == 6){
+        rankLetter = "g";
+      }
       else if(rank == 7){
-        rankLetter = "a";
+        rankLetter = "h";
       }
       return rankLetter;
     }
@@ -77,20 +77,19 @@ public class ChessPanel extends JPanel implements MouseListener {
     private Tile getPressedTile(int mouseX, int mouseY) {
       int rank = mouseX / b.tileDimension;
       int file = mouseY / b.tileDimension;
-      // System.out.println(rank + (file + 1));
       return b.getTile(rank, file);
     }
 
   private void makeUpdate(Tile pressedTile){
     if (fromTile != null) {
         if (fromTile.getPiece().isValidMove(pressedTile.rank, pressedTile.file)) {
-          System.out.println("Is valid move");
+          System.out.println(fromTile.p.player.getPlayerColor() + " " + fromTile.p.name + " moved from " + convertRank(fromTile.p.rank) + (8 - fromTile.p.file) + " to " + convertRank(pressedTile.rank) + (8 - pressedTile.file));
           if (pressedTile.p != null){
-            System.out.println("The piece not null");
             if (pressedTile.p.player != fromTile.p.player){
-              System.out.println("Hey There is a piece you are capturing!");
-              pressedTile.removePiece();
-             
+              if(!pressedTile.p.name.equals("King")){
+                System.out.println(pressedTile.p.player.getPlayerColor() + " " + pressedTile.p.name + " captured by " + fromTile.p.player.getPlayerColor() + " " + fromTile.p.name);
+                pressedTile.removePiece();
+              } 
             }
           }
 
@@ -98,7 +97,6 @@ public class ChessPanel extends JPanel implements MouseListener {
           pressedTile.p.updateTile(pressedTile);
           pressedTile.p.rank = pressedTile.rank;
           pressedTile.p.file = pressedTile.file;
-
 
           updateGraphics();
 
