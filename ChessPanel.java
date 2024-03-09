@@ -80,12 +80,9 @@ public class ChessPanel extends JPanel implements MouseListener {
               + convertRank(fromTile.p.rank) + (8 - fromTile.p.file) + " to " + convertRank(pressedTile.rank)
               + (8 - pressedTile.file));
           if (pressedTile.p != null) {
-            if (pressedTile.p.player != fromTile.p.player) {
-              if (!pressedTile.p.name.equals("King")) {
-                System.out.println(pressedTile.p.player.getPlayerColor() + " " + pressedTile.p.name + " captured by "
+            if (pressedTile.p.player != fromTile.p.player && !(pressedTile.p.name.equals("King"))) {                System.out.println(pressedTile.p.player.getPlayerColor() + " " + pressedTile.p.name + " captured by "
                     + fromTile.p.player.getPlayerColor() + " " + fromTile.p.name);
                 pressedTile.removePiece();
-              }
             }
           }
 
@@ -100,13 +97,11 @@ public class ChessPanel extends JPanel implements MouseListener {
           fromTile = null;
 
           b.switchPlayer();
-          // System.out.println("It's " + b.current_player.getPlayerColor() + "turn ");
+          System.out.println("It's " + b.current_player.getPlayerColor() + "turn ");
         }
-      } else {
-        System.out.println("Hey, " + fromTile.p.player.getPlayerColor());
-
-        System.out.println("It's " + b.current_player.getPlayerColor() + " turn ");
-
+      } 
+      else{
+        System.out.println(fromTile.p.player.getPlayerColor() + ", it's " + b.current_player.getPlayerColor() + "'s turn ");
       }
     }
   }
