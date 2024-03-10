@@ -1,18 +1,22 @@
 public class Rook extends Piece {
 
   Board b;
+  private boolean hasMoved;
 
   //Constructor for rook that assigns attributes
   public Rook(int rank, int file, Player p, String name, String icon, int points, Board b) {
     super(rank, file, p, name, icon, points, b);
     this.b = b;
+    this.hasMoved = false;
     tile = b.getTile(rank, file);
   }
 
   @Override
   public boolean isValidMove(int r, int f) {
     Tile pressTile = b.getTile(r, f);
-    
+    if(pressTile.p instanceof King){
+      return false;
+    }
     if (rank == pressTile.rank || file == pressTile.file){
       //if in a same rank
       if (rank == pressTile.rank) {
@@ -33,6 +37,7 @@ public class Rook extends Piece {
           }
         }
       }
+      hasMoved = true;
       return true;
     }
     return false;

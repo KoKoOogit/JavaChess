@@ -10,6 +10,12 @@ public class Knight extends Piece {
   public boolean isValidMove(int pressRank, int pressFile){
     int diffFile = Math.abs(pressFile - file);
     int diffRank = Math.abs(pressRank - rank);
+    Tile pressTile = b.getTile(pressRank, pressFile);
+
+    if(pressTile.p instanceof King){
+      return false;
+    }
+    
     //checks if the knight is moving in an L
     if (diffFile == 2 && diffRank == 1 || diffFile == 1 && diffRank == 2){
       return true;

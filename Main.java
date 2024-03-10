@@ -1,21 +1,18 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
+
+  //Creating the new players of the game
+  static Player white = new Player("White", 0);
+  static Player black = new Player("Black", 0);
+  static Player[] players = {white, black};
+  static Board cb = new Board(players);
+
+  //Creating the new GUI frame for the chess board
+  static ChessPanel cp = new ChessPanel(cb);
+  static ChessFrame cf = new ChessFrame(800);
+  
   public static void main(String[] args) {
-
-    
-    
-    //Creating the new players of the game
-    Player white = new Player("White", 0);
-    Player black = new Player("Black", 0);
-    Player[] players = {white, black};
-    Board cb = new Board(players);
-    
-    //Creating the new GUI frame for the chess board
-    ChessPanel cp = new ChessPanel(cb);
-    ChessFrame cf = new ChessFrame(800);
-
     //Creating all the white pieces
     Piece Wp1 = new Pawn(0, 6, white, "Pawn", "./icons/w-pawn.png", 1, cp.getBoard());
     Piece Wp2 = new Pawn(1, 6, white, "Pawn", "./icons/w-pawn.png", 1, cp.getBoard());
@@ -90,37 +87,25 @@ public class Main {
 
     //Sets attributes of the GUI
     cf.setVisible(true);cf.add(cp);cf.setResizable(false);
-    
-    Scanner chessConsole = new Scanner(System.in);
-    
+        
     System.out.println("\"Tour Guide\" Project");
-    System.out.println("Chess is a board game for two players, referred to as white and black, each controlling an army of chess pieces, with the objective to checkmate the opponent's king. Below are some of the features of the console. Enter the corresponding numbers to access this feature at any time!");
-    System.out.println("(1) Help");
-    System.out.println("(2) Rules");
-    System.out.println("(3) Checkmate/Draw/Forfeit");
-    while(true){
-      String input = chessConsole.nextLine();
-      //if 1 is entered, the console will offer help on how to play
-      if (input.equals("1")) {
-        System.out.println("To move the pieces first click the piece you want to move, then click the square you want to move it to. If you click a tile where there is already a piece, your own piece will only move if the existing piece on the tile is a different color");
-      }
-      //if 2 is entered, the console will give the rules
-      else if (input.equals("2")) {
-        System.out.println("For the rules, refer to this article by chess.com");
-        System.out.println("https://www.chess.com/learn-how-to-play-chess");
-      }
-      //if 3 is entered, the console will end the game
-      else if (input.equals("3")) {
-        System.out.println("The game has been manually ended!");
-        System.exit(0);
-      }
-      //else the console will ask for the user to renter their input
-      else {
-        System.out.println("Please enter a valid input, provided below");
-        System.out.println("(1) Help");
-        System.out.println("(2) Rules");
-        System.out.println("(3) Checkmate/Draw/Forfeit");
-      }
-    }
+    System.out.println("Chess is a board game for two players, referred to as white and black, each controlling an army of chess pieces, with the objective to checkmate the opponent's king");
+    System.out.println("To move the pieces in this version of chess, first click the piece you want to move, then click the square you want to move it to");
+    System.out.println("To exit the game, click the \"X\" at the top of the board");
+    System.out.println("For a more extensive explanation of the rules, refer to this article by chess.com");
+    System.out.println("https://www.chess.com/learn-how-to-play-chess");
+    System.out.println("");
+    System.out.println("Log");
+    System.out.println("");
+  }
+
+  public static Player getWhite(){
+    return white;
+  }
+  public static Player getBlack(){
+    return black;
+  }
+  public static Board getCPBoard(){
+    return cp.getBoard();
   }
 }

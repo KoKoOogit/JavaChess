@@ -3,11 +3,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Scanner;
 
 import javax.swing.JPanel;
 
 public class ChessPanel extends JPanel implements MouseListener {
+  
   Tile fromTile;
+  Tile fromTileCopy;
 
   Board b;
 
@@ -76,13 +79,12 @@ public class ChessPanel extends JPanel implements MouseListener {
     if (fromTile != null) {
       if (fromTile.p.player == b.current_player) {
         if (fromTile.getPiece().isValidMove(pressedTile.rank, pressedTile.file)) {
-          System.out.println(fromTile.p.player.getPlayerColor() + " " + fromTile.p.name + " moved from "
-              + convertRank(fromTile.p.rank) + (8 - fromTile.p.file) + " to " + convertRank(pressedTile.rank)
-              + (8 - pressedTile.file));
+          System.out.println(fromTile.p.player.getPlayerColor() + " " + fromTile.p.name + " moved from " + convertRank(fromTile.p.rank) + (8 - fromTile.p.file) + " to " + convertRank(pressedTile.rank) + (8 - pressedTile.file));
           if (pressedTile.p != null) {
-            if (pressedTile.p.player != fromTile.p.player && !(pressedTile.p.name.equals("King"))) {                System.out.println(pressedTile.p.player.getPlayerColor() + " " + pressedTile.p.name + " captured by "
-                    + fromTile.p.player.getPlayerColor() + " " + fromTile.p.name);
-                pressedTile.removePiece();
+            if (pressedTile.p.player != fromTile.p.player) {
+              System.out.println(pressedTile.p.player.getPlayerColor() + " " + pressedTile.p.name + " captured by " + fromTile.p.player.getPlayerColor() + " " + fromTile.p.name);
+              b.current_player.setScore(b.current_player.getScore() + pressedTile.p.points);
+              pressedTile.removePiece();
             }
           }
 
@@ -90,22 +92,107 @@ public class ChessPanel extends JPanel implements MouseListener {
           pressedTile.p.updateTile(pressedTile);
           pressedTile.p.rank = pressedTile.rank;
           pressedTile.p.file = pressedTile.file;
-
+          
           updateGraphics();
+
+          if(fromTile.p instanceof Pawn && ((Pawn)fromTile.p).checkCanPromote(pressedTile.file)){
+            Scanner promoteInput = new Scanner(System.in);
+            System.out.println(fromTile.p.player.getPlayerColor() + "'s pawn at " + convertRank(pressedTile.rank) + (8 - pressedTile.file) + " can promote");
+            System.out.println("Choose which piece to promote it too from the options below");
+            System.out.println("(B) Bishop");
+            System.out.println("(N) Knight");
+            System.out.println("(R) Rook");
+            System.out.println("(Q) Queen");
+            
+            while(true){
+              
+              String pieceInput = promoteInput.nextLine();
+              
+              if(pieceInput.toLowerCase().equals("b")){
+                if(b.current_player.getPlayerColor().equals("White")){
+                  Bishop promotedWb = new Bishop(pressedTile.rank, pressedTile.file, Main.getWhite(), "Bishop", "./icons/w-bishop.png", 3, Main.getCPBoard());
+                  pressedTile.setPiece(promotedWb);
+                  pressedTile.p.updateTile(pressedTile);
+                  break;
+                }
+                else{
+                  Bishop promotedBb = new Bishop(pressedTile.rank, pressedTile.file, Main.getBlack(), "Bishop", "./icons/b-bishop.png", 3, Main.getCPBoard());
+                  pressedTile.setPiece(promotedBb);
+                  pressedTile.p.updateTile(pressedTile);
+                  break;
+                }
+              }
+              
+              else if(pieceInput.toLowerCase().equals("n")){
+                if(b.current_player.getPlayerColor().equals("White")){
+                  Knight promotedWn = new Knight(pressedTile.rank, pressedTile.file, Main.getWhite(), "Knight", "./icons/w-knight.png", 3, Main.getCPBoard());
+                  pressedTile.setPiece(promotedWn);
+                  pressedTile.p.updateTile(pressedTile);
+                  break;
+                }
+                else{
+                  Knight promotedBn = new Knight(pressedTile.rank, pressedTile.file, Main.getBlack(), "Knight", "./icons/b-knight.png", 3, Main.getCPBoard());
+                  pressedTile.setPiece(promotedBn);
+                  pressedTile.p.updateTile(pressedTile);
+                  break;
+                }
+              }
+              
+              else if(pieceInput.toLowerCase().equals("r")){
+                if(b.current_player.getPlayerColor().equals("White")){
+                  Rook promotedWr = new Rook(pressedTile.rank, pressedTile.file, Main.getWhite(), "Rook", "./icons/w-rook.png", 5, Main.getCPBoard());
+                  pressedTile.setPiece(promotedWr);
+                  pressedTile.p.updateTile(pressedTile);
+                  break;
+                }
+                else{
+                  Rook promotedBr = new Rook(pressedTile.rank, pressedTile.file, Main.getBlack(), "Rook", "./icons/b-rook.png", 5, Main.getCPBoard());
+                  pressedTile.setPiece(promotedBr);
+                  pressedTile.p.updateTile(pressedTile);
+                  break;
+                }
+              }
+              
+              else if(pieceInput.toLowerCase().equals("q")){
+                if(b.current_player.getPlayerColor().equals("White")){
+                  Queen promotedWq = new Queen(pressedTile.rank, pressedTile.file, Main.getWhite(), "Queen", "./icons/w-queen.png", 9, Main.getCPBoard());
+                  pressedTile.setPiece(promotedWq);
+                  pressedTile.p.updateTile(pressedTile);
+                  break;
+                }
+                else{
+                  Queen promotedBq = new Queen(pressedTile.rank, pressedTile.file, Main.getBlack(), "Queen", "./icons/b-queen.png", 9, Main.getCPBoard());
+                  pressedTile.setPiece(promotedBq);
+                  pressedTile.p.updateTile(pressedTile);
+                  break;
+                }
+              }
+              
+              else{
+                System.out.println("Please enter a valid piece the pawn can promote to");
+                System.out.println("(B) Bishop");
+                System.out.println("(N) Knight");
+                System.out.println("(R) Rook");
+                System.out.println("(Q) Queen");
+              }
+            }
+          }
 
           fromTile.removePiece();
           fromTile = null;
 
+          //Checking
+          //Check all enemy pieces on the board
+          //See if the enemy can make a valid move to the king's position
+
           b.switchPlayer();
-          System.out.println("It's " + b.current_player.getPlayerColor() + "turn ");
+          System.out.println("It's " + b.current_player.getPlayerColor() + "'s turn");
+          System.out.println("");
         }
       } 
-      else{
-        System.out.println(fromTile.p.player.getPlayerColor() + ", it's " + b.current_player.getPlayerColor() + "'s turn ");
-      }
     }
   }
-
+  
   // called when Jpanel initiated or updateGrahics
   @Override
   public void paintComponent(Graphics g) {
@@ -151,7 +238,6 @@ public class ChessPanel extends JPanel implements MouseListener {
         }
       }
     }
-  
   }
 
   @Override

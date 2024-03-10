@@ -13,6 +13,10 @@ public class Queen extends Piece {
   public boolean isValidMove(int pressRank, int pressFile) {
     Tile pressTile = b.getTile(pressRank, pressFile);
     
+    if(pressTile.p instanceof King){
+      return false;
+    }
+    
     if (rank == pressTile.rank || file == pressTile.file) {
       // if in a same rank
       if (rank == pressTile.rank) {
