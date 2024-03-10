@@ -51,7 +51,7 @@ public class Pawn extends Piece {
         }
       }
       //checking if a black pawn can capture a piece
-      else if((pressTile.file == this.tile.file - 1 && (pressTile.rank == this.tile.rank + 1 || pressTile.rank == this.tile.rank - 1)) && (pressTile.p != null && pressTile.p.player.getPlayerColor().toLowerCase().equals("white"))){
+      else if((pressTile.file == this.tile.file + 1 && (pressTile.rank == this.tile.rank - 1 || pressTile.rank == this.tile.rank + 1)) && (pressTile.p != null && pressTile.p.player.getPlayerColor().toLowerCase().equals("white"))){
         return true;
       }
     }
