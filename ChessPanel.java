@@ -3,14 +3,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Scanner;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JPanel;
 
-public class ChessPanel extends JPanel implements MouseListener {
+import java.util.Scanner;
+
+public class ChessPanel extends JPanel implements MouseListener, WindowListener {
   
   Tile fromTile;
-  Tile fromTileCopy;
 
   Board b;
 
@@ -182,8 +184,16 @@ public class ChessPanel extends JPanel implements MouseListener {
           fromTile = null;
 
           //Checking
-          //Check all enemy pieces on the board
-          //See if the enemy can make a valid move to the king's position
+          for(int r = 0; r < 8; r++){
+            for(int f = 0; f < 8; f++){
+              if(b.getTile(r, f).p != null && b.getTile(r, f).p.player.getPlayerColor().equals("black") && b.getTile(r, f).p.isValidMove(Main.getWhiteKing().file, Main.getWhiteKing().rank)){
+                System.out.println("The White King has been checked");
+              }
+              else if(b.getTile(r, f).p != null && b.getTile(r, f).p.player.getPlayerColor().equals("white") && b.getTile(r, f).p.isValidMove(Main.getBlackKing().file, Main.getBlackKing().rank)){
+                System.out.println("The Black King has been checked");
+              }
+            }
+          }
 
           b.switchPlayer();
           System.out.println("It's " + b.current_player.getPlayerColor() + "'s turn");
@@ -257,6 +267,42 @@ public class ChessPanel extends JPanel implements MouseListener {
 
   @Override
   public void mouseClicked(MouseEvent e) {
-
+    
   }
+
+  @Override
+    public void windowOpened(WindowEvent e){
+      
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e){
+
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e){
+      
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e){
+      
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e){
+      
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e){
+      
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e){
+      
+    }
+  
 }

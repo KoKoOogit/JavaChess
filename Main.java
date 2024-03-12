@@ -2,18 +2,25 @@ import java.util.ArrayList;
 
 public class Main {
 
-  //Creating the new players of the game
+  //creating the new players of the game
   static Player white = new Player("White", 0);
   static Player black = new Player("Black", 0);
   static Player[] players = {white, black};
+  
+  //creating a new board for the game
   static Board cb = new Board(players);
 
-  //Creating the new GUI frame for the chess board
+  //creating pieces for the kings
+  static Piece Wk;
+  static Piece Bk;
+
+  //creating the new GUI frame for the chess board
   static ChessPanel cp = new ChessPanel(cb);
-  static ChessFrame cf = new ChessFrame(800);
+  static ChessFrame cf = new ChessFrame(400, 420);
   
   public static void main(String[] args) {
-    //Creating all the white pieces
+    
+    //creating all the white pieces
     Piece Wp1 = new Pawn(0, 6, white, "Pawn", "./icons/w-pawn.png", 1, cp.getBoard());
     Piece Wp2 = new Pawn(1, 6, white, "Pawn", "./icons/w-pawn.png", 1, cp.getBoard());
     Piece Wp3 = new Pawn(2, 6, white, "Pawn", "./icons/w-pawn.png", 1, cp.getBoard());
@@ -26,12 +33,12 @@ public class Main {
     Piece Wn1 = new Knight(1, 7, white, "Knight", "./icons/w-knight.png", 3, cp.getBoard());
     Piece Wb1 = new Bishop(2, 7, white, "Bishop", "./icons/w-bishop.png", 3, cp.getBoard());
     Piece Wq = new Queen(3, 7, white, "Queen", "./icons/w-queen.png", 9, cp.getBoard());
-    Piece Wk = new King(4, 7, white, "King", "./icons/w-king.png", 0, cp.getBoard());
+    Wk = new King(4, 7, white, "King", "./icons/w-king.png", 0, cp.getBoard());
     Piece Wb2 = new Bishop(5, 7, white, "Bishop", "./icons/w-bishop.png", 3, cp.getBoard());
     Piece Wn2 = new Knight(6, 7, white, "Knight", "./icons/w-knight.png", 3, cp.getBoard());
     Piece Wr2 = new Rook(7, 7, white, "Rook", "./icons/w-rook.png", 5, cp.getBoard());
   
-    //Creating all the black pieces
+    //creating all the black pieces
     Piece Bp1 = new Pawn(0, 1, black, "Pawn", "./icons/b-pawn.png", 1, cp.getBoard());
     Piece Bp2 = new Pawn(1, 1, black, "Pawn", "./icons/b-pawn.png", 1, cp.getBoard());
     Piece Bp3 = new Pawn(2, 1, black, "Pawn", "./icons/b-pawn.png", 1, cp.getBoard());
@@ -44,12 +51,12 @@ public class Main {
     Piece Bn1 = new Knight(1, 0, black, "Knight", "./icons/b-knight.png", 3, cp.getBoard());
     Piece Bb1 = new Bishop(2, 0, black, "Bishop", "./icons/b-bishop.png", 3, cp.getBoard());
     Piece Bq = new Queen(3, 0, black, "Queen", "./icons/b-queen.png", 9, cp.getBoard());
-    Piece Bk = new King(4, 0, black, "King", "./icons/b-king.png", 0, cp.getBoard());
+    Bk = new King(4, 0, black, "King", "./icons/b-king.png", 0, cp.getBoard());
     Piece Bb2 = new Bishop(5, 0, black, "Bishop", "./icons/b-bishop.png", 3, cp.getBoard());
     Piece Bn2 = new Knight(6, 0, black, "Knight", "./icons/b-knight.png", 3, cp.getBoard());
     Piece Br2 = new Rook(7, 0, black, "Rook", "./icons/b-rook.png", 9, cp.getBoard());
 
-    //Setting all the locations of the white pieces
+    //setting all the locations of the white pieces
     cp.getBoard().getTile(0,6).setPiece(Wp1);
     cp.getBoard().getTile(1,6).setPiece(Wp2);
     cp.getBoard().getTile(2,6).setPiece(Wp3);
@@ -87,7 +94,8 @@ public class Main {
 
     //Sets attributes of the GUI
     cf.setVisible(true);cf.add(cp);cf.setResizable(false);
-        
+
+    //background and instructions
     System.out.println("\"Tour Guide\" Project");
     System.out.println("Chess is a board game for two players, referred to as white and black, each controlling an army of chess pieces, with the objective to checkmate the opponent's king");
     System.out.println("To move the pieces in this version of chess, first click the piece you want to move, then click the square you want to move it to");
@@ -95,17 +103,32 @@ public class Main {
     System.out.println("For a more extensive explanation of the rules, refer to this article by chess.com");
     System.out.println("https://www.chess.com/learn-how-to-play-chess");
     System.out.println("");
+    
+    //log for movements, captures, checking, and special events
     System.out.println("Log");
     System.out.println("");
   }
 
+  //gets white player
   public static Player getWhite(){
     return white;
   }
+
+  //gets black player
   public static Player getBlack(){
     return black;
   }
+
+  //gets board
   public static Board getCPBoard(){
     return cp.getBoard();
+  }
+
+  public static Piece getWhiteKing(){
+    return Wk;
+  }
+
+  public static Piece getBlackKing(){
+    return Bk;
   }
 }
